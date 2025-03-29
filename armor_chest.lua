@@ -1,4 +1,6 @@
-local time_between_regen = 120 --time in seconds between the time the chest is opened and when it closes to be used again
+local time_between_regen = tonumber(core.settings:get("myregenchest.armor_time")) or 120
+
+--local time_between_regen = 120 --time in seconds between the time the chest is opened and when it closes to be used again
 
 
 local items = { --the number is the chance of spawning. 1 means everytime. 3 means 1 in3 chance of spawning

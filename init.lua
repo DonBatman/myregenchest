@@ -10,5 +10,5 @@ end
 --priv to destroy chest
 minetest.register_privilege("myregenchest", {
 	description = "Only people with priv can destroy chest",
-	give_to_singleplayer = false
+	give_to_singleplayer = true
 })
