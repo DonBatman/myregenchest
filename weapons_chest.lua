@@ -1,7 +1,4 @@
-local time_between_regen = tonumber(core.settings:get("myregenchest.weapons_time")) or 120
-
---local time_between_regen = 120 --time in seconds between the time the chest is opened and when it closes to be used again
-
+local time_between_regen = tonumber(core.settings:get("myregenchest.weapons_time")) or 300
 
 local items = { --the number is the chance of spawning. 1 means everytime. 3 means 1 in3 chance of spawning
 	{1,		"default:sword_wood"},
@@ -9,9 +6,6 @@ local items = { --the number is the chance of spawning. 1 means everytime. 3 mea
 	{10,	"default:sword_bronze"},
 	{50,	"default:sword_diamond"},
 	}
-
-
-
 
 local item_spawn = function(pos, node)
 
@@ -42,7 +36,7 @@ local check_air = function(itemstack, placer, pointed_thing)
 local dig_it = function(pos, node, digger)
 		if minetest.get_player_privs(digger:get_player_name()).myregenchest ~= true then
 			minetest.chat_send_player( digger:get_player_name(), "You do not have the privelege to remove the chest" )
-			return
+			else minetest.remove_node(pos,node)
 		end
 	end
 

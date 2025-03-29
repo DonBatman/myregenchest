@@ -1,8 +1,8 @@
 #Change the size of the stack 
-myregenchest.food_time (Set food regen time) int 120
+myregenchest.food_time (Set food regen time) int 300
 #Change the size of the stack 
-myregenchest.tool_time (Set tool regen time) int 120
+myregenchest.tool_time (Set tool regen time) int 300
 #Change the size of the stack 
-myregenchest.weapons_time (Set weapons regen time) int 120
+myregenchest.weapons_time (Set weapons regen time) int 300
 #Change the size of the stack 
-myregenchest.armor_time (Set armor regen time) int 120
+myregenchest.armor_time (Set armor regen time) int 300
