@@ -13,30 +13,30 @@ local item_spawn = function(pos, node)
 		local r = items[i][1]
 		local i = items[i][2]
 		local rand = math.random(r)
-			if rand == 1 then minetest.spawn_item({x=pos.x,y=pos.y+0.5,z=pos.z}, i) end
+			if rand == 1 then core.spawn_item({x=pos.x,y=pos.y+0.5,z=pos.z}, i) end
 	end
 
-	minetest.set_node(pos, {name="myregenchest:weapons_chest_open", param2=node.param2})
+	core.set_node(pos, {name="myregenchest:weapons_chest_open", param2=node.param2})
 
-	local timer = minetest.get_node_timer(pos)
+	local timer = core.get_node_timer(pos)
 		timer:start(time_between_regen)
-		minetest.swap_node(pos, {name="myregenchest:weapons_chest_open", param2=node.param2})
+		core.swap_node(pos, {name="myregenchest:weapons_chest_open", param2=node.param2})
 end
 
 local check_air = function(itemstack, placer, pointed_thing)
 			local pos = pointed_thing.above
-			local nodea = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
+			local nodea = core.get_node({x=pos.x,y=pos.y+1,z=pos.z})
 				if nodea.name ~= "air" then
-				minetest.chat_send_player( placer:get_player_name(), "Need room above chest" )
+				core.chat_send_player( placer:get_player_name(), "Need room above chest" )
 				return
 				end
-			return minetest.item_place(itemstack, placer, pointed_thing)
+			return core.item_place(itemstack, placer, pointed_thing)
 			end
 
 local dig_it = function(pos, node, digger)
-		if minetest.get_player_privs(digger:get_player_name()).myregenchest ~= true then
-			minetest.chat_send_player( digger:get_player_name(), "You do not have the privelege to remove the chest" )
-			else minetest.remove_node(pos,node)
+		if core.get_player_privs(digger:get_player_name()).myregenchest ~= true then
+			core.chat_send_player( digger:get_player_name(), "You do not have the privelege to remove the chest" )
+			else core.remove_node(pos,node)
 		end
 	end
 
@@ -65,7 +65,7 @@ local open_box = {
 		}
 	}
 
-minetest.register_node("myregenchest:weapons_chest", {
+core.register_node("myregenchest:weapons_chest", {
 	description = "Weapons Chest",
 	tiles = {
 		"myitemchest_chest_top.png",
@@ -89,7 +89,7 @@ minetest.register_node("myregenchest:weapons_chest", {
 
 
 
-minetest.register_node("myregenchest:weapons_chest_open", {
+core.register_node("myregenchest:weapons_chest_open", {
 	description = "Weapons Chest Open",
 	tiles = {
 		"myitemchest_chest_open_top.png",
@@ -108,11 +108,11 @@ minetest.register_node("myregenchest:weapons_chest_open", {
 	node_box = open_box,
 	selection_box = open_box,
 	on_timer = function(pos, elapsed)
-	local timer = minetest.get_node_timer(pos)
-	local node = minetest.get_node(pos)
-	minetest.swap_node(pos, {name = "myregenchest:weapons_chest", param2=node.param2})
+	local timer = core.get_node_timer(pos)
+	local node = core.get_node(pos)
+	core.swap_node(pos, {name = "myregenchest:weapons_chest", param2=node.param2})
 	
-	local all_objects = minetest.get_objects_inside_radius(pos, 0.5)
+	local all_objects = core.get_objects_inside_radius(pos, 0.5)
 	local players = {}
 	local _,obj
 		for _,obj in ipairs(all_objects) do
